@@ -1,5 +1,13 @@
 
 body {
+  background-color: #68ae9f;
+/*  background-image: url("../img/lethal-injection.jpg");
+  background-size: cover;*/
+}
+
+h1, h2, h3 {
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+  color: white;
 }
 
 a, a:visited {
@@ -8,9 +16,9 @@ a, a:visited {
 
 #container {
   padding-top:20px;
-  width: 980px;
-  border-left: 2px #ddd solid;
-  border-right: 2px #ddd solid;
+  width: 1208px;
+/*  border-left: 2px #ddd solid;
+  border-right: 2px #ddd solid;*/
 }
 
 header {
@@ -18,19 +26,20 @@ header {
 }
 
 #book-title {
-  font-family: georgia, "times new roman", times, serif;
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
   color: #555;
-  font-size: 2.3em;
-  text-align: center;
+  font-size: 2em;
+  /*text-align: center;*/
 }
 
 #text-select {
   float:right;
+  margin-top: 50px;
   margin-right: 10px;
 }
 
 #vis {
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: relative;
 }
 
@@ -52,7 +61,8 @@ header {
 
 .bubble-node {
   /* fill: #d1e0f3; */
-  fill: #DCE9BE;
+  /*fill: #DCE9BE;*/
+  fill: #f6dfaa;
 }
 
 .bubble-hover {
@@ -62,18 +72,18 @@ header {
 
 .bubble-selected {
   /* fill: #a8c8ee;  */
-  fill: #CEE98F;
+  fill: #f29e07;
   /* stroke: #6081a3; */
-  stroke: #A6BA92;
+  stroke: white;
   stroke-width: 1.5px;
 }
 
 .active {
-  color: #A6BA92
+  color: #A6BA92;
 }
 
 a.bubble-label {
-  font-family: georgia, "times new roman", times, serif;
+  font-family: garamond, "times new roman", times, serif;
   color: inherit;
   cursor: pointer;
   display: block;
@@ -85,7 +95,7 @@ a.bubble-label {
 
 
 .bubble-label .bubble-label-value {
-  font: 11px sans-serif;
+  font: 9px sans-serif;
   white-space: nowrap;
 }
 

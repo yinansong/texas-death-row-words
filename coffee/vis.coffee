@@ -4,18 +4,18 @@ root = exports ? this
 Bubbles = () ->
   # standard variables accessible to
   # the rest of the functions inside Bubbles
-  width = 980
-  height = 510
+  width = 1208
+  height = 600
   data = []
   node = null
   label = null
   margin = {top: 5, right: 0, bottom: 0, left: 0}
   # largest size for our bubbles
-  maxRadius = 65
+  maxRadius = 60
 
   # this scale will be used to size our bubbles
   rScale = d3.scale.sqrt().range([0,maxRadius])
-  
+
   # I've abstracted the data value used to size each
   # into its own function. This should make it easy
   # to switch out the underlying dataset
@@ -29,7 +29,7 @@ Bubbles = () ->
   idValue = (d) -> d.name
 
   # function to define what to display in each bubble
-  #  again, abstracted to ease migration to 
+  #  again, abstracted to ease migration to
   #  a different dataset if desired
   textValue = (d) -> d.name
 
@@ -68,7 +68,7 @@ Bubbles = () ->
   # ---
   tick = (e) ->
     dampenedAlpha = e.alpha * 0.1
-    
+
     # Most of the work is done by the gravity and collide
     # functions.
     node
@@ -94,7 +94,7 @@ Bubbles = () ->
   # ---
   # Creates new chart function. This is the 'constructor' of our
   #  visualization
-  # Check out http://bost.ocks.org/mike/chart/ 
+  # Check out http://bost.ocks.org/mike/chart/
   #  for a explanation and rational behind this function design
   # ---
   chart = (selection) ->
@@ -112,7 +112,7 @@ Bubbles = () ->
       svgEnter = svg.enter().append("svg")
       svg.attr("width", width + margin.left + margin.right )
       svg.attr("height", height + margin.top + margin.bottom )
-      
+
       # node will be used to group the bubbles
       node = svgEnter.append("g").attr("id", "bubble-nodes")
         .attr("transform", "translate(#{margin.left},#{margin.top})")
@@ -124,9 +124,9 @@ Bubbles = () ->
         .attr("height", height)
         .on("click", clear)
 
-      # label is the container div for all the labels that sit on top of 
+      # label is the container div for all the labels that sit on top of
       # the bubbles
-      # - remember that we are keeping the labels in plain html and 
+      # - remember that we are keeping the labels in plain html and
       #  the bubbles in svg
       label = d3.select(this).selectAll("#bubble-labels").data([data])
         .enter()
@@ -135,7 +135,7 @@ Bubbles = () ->
 
       update()
 
-      # see if url includes an id already 
+      # see if url includes an id already
       hashchange()
 
       # automatically call hashchange when the url has changed
@@ -150,7 +150,7 @@ Bubbles = () ->
     # add a radius to our data nodes that will serve to determine
     # when a collision has occurred. This uses the same scale as
     # the one used to size our bubbles, but it kicks up the minimum
-    # size to make it so smaller bubbles have a slightly larger 
+    # size to make it so smaller bubbles have a slightly larger
     # collision 'sphere'
     data.forEach (d,i) ->
       d.forceR = Math.max(minCollisionRadius, rScale(rValue(d)))
@@ -172,7 +172,7 @@ Bubbles = () ->
     # idValue returns
     node = node.selectAll(".bubble-node").data(data, (d) -> idValue(d))
 
-    # we don't actually remove any nodes from our data in this example 
+    # we don't actually remove any nodes from our data in this example
     # but if we did, this line of code would remove them from the
     # visualization as well
     node.exit().remove()
@@ -193,14 +193,14 @@ Bubbles = () ->
   # to work well with the font size
   # ---
   updateLabels = () ->
-    # as in updateNodes, we use idValue to define what the unique id for each data 
+    # as in updateNodes, we use idValue to define what the unique id for each data
     # point is
     label = label.selectAll(".bubble-label").data(data, (d) -> idValue(d))
 
     label.exit().remove()
 
     # labels are anchors with div's inside them
-    # labelEnter holds our enter selection so it 
+    # labelEnter holds our enter selection so it
     # is easier to append multiple elements to this selection
     labelEnter = label.enter().append("a")
       .attr("class", "bubble-label")
@@ -218,7 +218,7 @@ Bubbles = () ->
 
     # label font size is determined based on the size of the bubble
     # this sizing allows for a bit of overhang outside of the bubble
-    # - remember to add the 'px' at the end as we are dealing with 
+    # - remember to add the 'px' at the end as we are dealing with
     #  styling divs
     label
       .style("font-size", (d) -> Math.max(8, rScale(rValue(d) / 2)) + "px")
@@ -239,8 +239,8 @@ Bubbles = () ->
     # reset the width of the label to the actual width
     label
       .style("width", (d) -> d.dx + "px")
-  
-    # compute and store each nodes 'dy' value - the 
+
+    # compute and store each nodes 'dy' value - the
     # amount to shift the label down
     # 'this' inside of D3's each refers to the actual DOM element
     # connected to the data node
@@ -285,7 +285,7 @@ Bubbles = () ->
           y = d.y - d2.y
           distance = Math.sqrt(x * x + y * y)
           # find current minimum space between two nodes
-          # using the forceR that was set to match the 
+          # using the forceR that was set to match the
           # visible radius of the nodes
           minDistance = d.forceR + d2.forceR + collisionPadding
 
@@ -389,7 +389,7 @@ Bubbles = () ->
       return rValue
     rValue = _
     chart
-  
+
   # final act of our main function is to
   # return the chart function we have created
   return chart
@@ -406,8 +406,8 @@ root.plotData = (selector, data, plot) ->
 
 texts = [
   {key:"sherlock",file:"top_sherlock.csv",name:"The Adventures of Sherlock Holmes"}
-  {key:"aesop",file:"top_aesop.csv",name:"Aesop's Fables"}
-  {key:"alice",file:"alice.csv",name:"Alice's Adventures in Wonderland"}
+  {key:"aesop",file:"top_aesop.csv",name:"From All Executed Prisoners - New"}
+  {key:"alice",file:"alice.csv",name:"From All Exected Prisoners - Old"}
   {key:"gulliver",file:"top_gulliver.csv",name:"Gulliver's Travels"}
 ]
 
