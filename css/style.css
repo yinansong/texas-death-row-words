@@ -39,19 +39,12 @@ header {
 }
 
 #vis {
-  /*overflow: hidden;*/
+  overflow: hidden;
   position: relative;
 }
 
 #status {
   padding:0 0 20px 20px;
-}
-
-#controls {
-  padding: 20px;
-  background-color: #eee;
-  margin: 10px;
-  width: 350px;
 }
 
 #bubble-background {
@@ -79,7 +72,7 @@ header {
 }
 
 .active {
-  color: #A6BA92;
+  color: 3;
 }
 
 a.bubble-label {

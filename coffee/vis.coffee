@@ -11,7 +11,7 @@ Bubbles = () ->
   label = null
   margin = {top: 5, right: 0, bottom: 0, left: 0}
   # largest size for our bubbles
-  maxRadius = 60
+  maxRadius = 70
 
   # this scale will be used to size our bubbles
   rScale = d3.scale.sqrt().range([0,maxRadius])
@@ -35,7 +35,7 @@ Bubbles = () ->
 
   # constants to control how
   # collision look and act
-  collisionPadding = 4
+  collisionPadding = 5
   minCollisionRadius = 12
 
   # variables that can be changed
@@ -56,6 +56,9 @@ Bubbles = () ->
   transformData = (rawData) ->
     rawData.forEach (d) ->
       d.count = parseInt(d.count)
+      # rawData.sort((a, b) -> return -(a.value - b.value))
+      # debugger;
+      # rawData.sort((a, b) -> return -(a.value - b.value))
       rawData.sort(() -> 0.5 - Math.random())
     rawData
 
@@ -86,9 +89,9 @@ Bubbles = () ->
   # here we disable gravity and charge as we implement custom versions
   # of gravity and collisions for this visualization
   force = d3.layout.force()
-    .gravity(0)
+    .gravity(0.01)
     .charge(0)
-    .size([width, height])
+    .size([width, height / 1.5])
     .on("tick", tick)
 
   # ---
@@ -111,7 +114,7 @@ Bubbles = () ->
       svg = d3.select(this).selectAll("svg").data([data])
       svgEnter = svg.enter().append("svg")
       svg.attr("width", width + margin.left + margin.right )
-      svg.attr("height", height + margin.top + margin.bottom )
+      svg.attr("height", height + margin.bottom )
 
       # node will be used to group the bubbles
       node = svgEnter.append("g").attr("id", "bubble-nodes")
@@ -221,7 +224,7 @@ Bubbles = () ->
     # - remember to add the 'px' at the end as we are dealing with
     #  styling divs
     label
-      .style("font-size", (d) -> Math.max(8, rScale(rValue(d) / 2)) + "px")
+      .style("font-size", (d) -> Math.max(8, rScale(rValue(d) / 2 )) + "px")
       .style("width", (d) -> 2.5 * rScale(rValue(d)) + "px")
 
     # interesting hack to get the 'true' text width
@@ -337,7 +340,7 @@ Bubbles = () ->
     node.classed("bubble-selected", (d) -> id == idValue(d))
     # if no node is selected, id will be empty
     if id.length > 0
-      d3.select("#status").html("<h3>The word <span class=\"active\">#{id}</span> is now active</h3>")
+      d3.select("#status").html("<h3>The word <a href=\"http://www.google.com\"><span class=\"active\">#{id}</span></a> is now active</h3>")
     else
       d3.select("#status").html("<h3>No word is active</h3>")
 
@@ -405,10 +408,8 @@ root.plotData = (selector, data, plot) ->
     .call(plot)
 
 texts = [
-  {key:"sherlock",file:"top_sherlock.csv",name:"The Adventures of Sherlock Holmes"}
-  {key:"aesop",file:"top_aesop.csv",name:"From All Executed Prisoners - New"}
-  {key:"alice",file:"alice.csv",name:"From All Exected Prisoners - Old"}
-  {key:"gulliver",file:"top_gulliver.csv",name:"Gulliver's Travels"}
+  {key:"all",file:"all_prisoners_top100.csv",name:"From All Executed Prisoners - New"}
+  {key:"old",file:"all_prisoners_old.csv",name:"From All Exected Prisoners - Old"}
 ]
 
 # ---
@@ -456,4 +457,3 @@ $ ->
 
   # load our data
   d3.csv("data/#{text.file}", display)
-
