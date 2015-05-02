@@ -30,6 +30,7 @@ a, a:visited {
 
 header {
   padding: 30px 0 0 0;
+  position: absolute;
 }
 
 #book-title {
@@ -48,6 +49,7 @@ header {
 #vis {
   overflow: hidden;
   position: relative;
+  top: 150px;
 }
 
 #status {
@@ -122,12 +124,13 @@ footer p {
   color: white;
   opacity: 0.4;
   position: absolute;
-  top: 300px;
+  top: 325px;
   z-index: -1;
 }
 
 #example {
-  position: absolute;
+  position: relative;
+  top: 100px;
   color: white;
   font-size: 20px;
   line-height: 5px;
@@ -144,4 +147,12 @@ footer p {
   font-size: 14px;
   margin-top: -20px;
   color: #555;
+}
+
+#desc {
+  color: #E8E6E6;
+  font-size: 12px;
+  max-width: 900px;
+  position: absolute;
+  top: 110px;
 }
