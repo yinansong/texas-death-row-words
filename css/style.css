@@ -1,6 +1,7 @@
 
 body {
-  background-color: #68ae9f;
+  /*background-color: #68ae9f;*/
+  background-color: #151515;
 /*  background-image: url("../img/lethal-injection.jpg");
   background-size: cover;*/
 }
@@ -10,19 +11,25 @@ h1, h2, h3 {
   color: white;
 }
 
+h4 {
+  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+  color: white;
+  size: 12px;
+}
+
 a, a:visited {
   color:#333;
 }
 
 #container {
-  padding-top:20px;
+  padding-top: -100px;
   width: 1208px;
 /*  border-left: 2px #ddd solid;
   border-right: 2px #ddd solid;*/
 }
 
 header {
-  padding: 10px;
+  padding: 30px 0 0 0;
 }
 
 #book-title {
@@ -48,14 +55,15 @@ header {
 }
 
 #bubble-background {
-  fill: none;
+  fill: transparent;
   pointer-events: all;
 }
 
 .bubble-node {
   /* fill: #d1e0f3; */
   /*fill: #DCE9BE;*/
-  fill: #f6dfaa;
+  /*fill: #b10b55;*/
+  fill: #ae2555;
 }
 
 .bubble-hover {
@@ -67,7 +75,7 @@ header {
   /* fill: #a8c8ee;  */
   fill: #f29e07;
   /* stroke: #6081a3; */
-  stroke: white;
+  /*stroke: white;*/
   stroke-width: 1.5px;
 }
 
@@ -99,3 +107,41 @@ footer p {
   font: 13px sans-serif;
 }
 
+.same-group {
+  color: 'black';
+  background-color: "black";
+}
+
+#group-info {
+  width: 1200px;
+  text-align: center;
+  margin: 0 auto;
+  font-family: Helvetica, sans-serif ;
+  /*font-weight: 800;*/
+  font-size: 400px;
+  color: white;
+  opacity: 0.4;
+  position: absolute;
+  top: 300px;
+  z-index: -1;
+}
+
+#example {
+  position: absolute;
+  color: white;
+  font-size: 20px;
+  line-height: 5px;
+  max-width: 800px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#example {
+  line-height: 30px;
+}
+
+#read-more {
+  color: white;
+  font-size: 14px;
+  margin-top: -20px;
+  color: #555;
+}

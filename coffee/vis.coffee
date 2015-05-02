@@ -4,14 +4,14 @@ root = exports ? this
 Bubbles = () ->
   # standard variables accessible to
   # the rest of the functions inside Bubbles
-  width = 1208
-  height = 600
+  width = 1200
+  height = 530
   data = []
   node = null
   label = null
   margin = {top: 5, right: 0, bottom: 0, left: 0}
   # largest size for our bubbles
-  maxRadius = 70
+  maxRadius = 65
 
   # this scale will be used to size our bubbles
   rScale = d3.scale.sqrt().range([0,maxRadius])
@@ -33,6 +33,10 @@ Bubbles = () ->
   #  a different dataset if desired
   textValue = (d) -> d.name
 
+  groupValue = (d) -> d.group
+
+  exampleValue= (d) -> d.example
+
   # constants to control how
   # collision look and act
   collisionPadding = 5
@@ -43,7 +47,7 @@ Bubbles = () ->
   # acts
   # - jitter controls the 'jumpiness'
   #  of the collisions
-  jitter = 0.5
+  jitter = 0.8
 
   # ---
   # tweaks our dataset to get it into the
@@ -57,9 +61,9 @@ Bubbles = () ->
     rawData.forEach (d) ->
       d.count = parseInt(d.count)
       # rawData.sort((a, b) -> return -(a.value - b.value))
-      # debugger;
       # rawData.sort((a, b) -> return -(a.value - b.value))
       rawData.sort(() -> 0.5 - Math.random())
+      # rawData.sort (a, b) -> b.value - a.value
     rawData
 
   # ---
@@ -290,7 +294,7 @@ Bubbles = () ->
           # find current minimum space between two nodes
           # using the forceR that was set to match the
           # visible radius of the nodes
-          minDistance = d.forceR + d2.forceR + collisionPadding
+          minDistance = d.forceR + d2.forceR + collisionPadding + 5
 
           # if the current distance is less then the minimum
           # allowed then we need to push both nodes away from one another
@@ -339,22 +343,29 @@ Bubbles = () ->
   updateActive = (id) ->
     node.classed("bubble-selected", (d) -> id == idValue(d))
     # if no node is selected, id will be empty
-    if id.length > 0
-      d3.select("#status").html("<h3>The word <a href=\"http://www.google.com\"><span class=\"active\">#{id}</span></a> is now active</h3>")
+    # if id.length > 0
+    #   d3.select("#status").html("<h4><span class=\"active\">#{id}</span></h4>")
+    # else
+    #   d3.select("#status").html("<h4>Click on a bubble to read an exerpt.</h4>")
+    if id
+      for x in data when idValue(x) is id
+        d3.select("#example").html("<span id=\"quote\">#{exampleValue(x)}&nbsp;</span><a href=\"\" id=\"read-more\">Read more...")
     else
-      d3.select("#status").html("<h3>No word is active</h3>")
+      d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
 
   # ---
   # hover event
   # ---
   mouseover = (d) ->
-    node.classed("bubble-hover", (p) -> p == d)
+    node.classed("bubble-hover", (p) -> groupValue(p) == groupValue(d))
+    d3.select("#group-info").html(d.group)
 
   # ---
   # remove hover class
   # ---
   mouseout = (d) ->
     node.classed("bubble-hover", false)
+    d3.select("group-info").html(d.group)
 
   # ---
   # public getter/setter for jitter variable
@@ -408,7 +419,7 @@ root.plotData = (selector, data, plot) ->
     .call(plot)
 
 texts = [
-  {key:"all",file:"all_prisoners_top100.csv",name:"From All Executed Prisoners - New"}
+  {key:"all",file:"all_prisoners_top100GroupExample.csv",name:"From All Executed Prisoners - New"}
   {key:"old",file:"all_prisoners_old.csv",name:"From All Exected Prisoners - Old"}
 ]
 
@@ -453,7 +464,7 @@ $ ->
       location.search = encodeURIComponent(key)
 
   # set the book title from the text name
-  d3.select("#book-title").html(text.name)
+  # d3.select("#book-title").html(text.name)
 
   # load our data
   d3.csv("data/#{text.file}", display)
