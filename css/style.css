@@ -47,15 +47,8 @@ header {
   position: absolute;
 }
 
-#book-title {
-  font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
-  color: #555;
-  font-size: 2em;
-  /*text-align: center;*/
-}
-
 #text-select {
-  float:right;
+  float: right;
   margin-top: 50px;
   margin-right: 10px;
 }
@@ -99,7 +92,8 @@ header {
 
 .bubble-selected {
   /* fill: #a8c8ee;  */
-  fill: #f29e07;
+  /*fill: #f29e07;*/
+  fill: #f1c40f;
   /* stroke: #6081a3; */
   /*stroke: white;*/
   stroke-width: 1.5px;
