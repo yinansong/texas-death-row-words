@@ -29,8 +29,12 @@ h4 {
   size: 12px;
 }
 
-a, a:visited {
-  color:#333;
+a {
+  color: #999;
+}
+
+a:visited {
+  color: #848484;
 }
 
 #container {
@@ -145,6 +149,8 @@ footer p {
 }
 
 #example {
+  background-color: #151515;
+  padding: 10px 30px 20px 0;
   position: relative;
   top: 100px;
   color: white;
