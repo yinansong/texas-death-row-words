@@ -1,3 +1,18 @@
+@keyframes gradual {
+  0% {fill: #FE2E64;}
+  100% {fill: #E8E9E7;}
+}
+
+@-webkit-keyframes gradual {
+    0% {fill: #FE2E64;;}
+    100% {fill: #E8E9E7;}
+}
+
+@-moz-keyframes gradual {
+  0% {fill: #FE2E64;;}
+  100% {fill: #E8E9E7;}
+}
+
 body {
   /*background-color: #68ae9f;*/
   background-color: #151515;
@@ -72,8 +87,13 @@ header {
 
 .bubble-hover {
   /* fill: #b8c7d9; */
+  -webkit-animation: gradual 0.25s 1;  /* Chrome, Safari, Opera */
+  -webkit-animation-timing-function: ease-in;  /* Chrome, Safari, Opera */
+  -moz-animation: gradual 0.25s 1;  /* Chrome, Safari, Opera */
+  -moz-animation-timing-function: ease-in;  /* Chrome, Safari, Opera */
+  animation-timing-function: ease-in;
+  animation: gradual 0.25 1;
   fill: #E8E9E7;
-  /*animation: gradual 2s;*/
 }
 
 
