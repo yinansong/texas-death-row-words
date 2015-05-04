@@ -1,4 +1,3 @@
-
 body {
   /*background-color: #68ae9f;*/
   background-color: #151515;
@@ -65,13 +64,18 @@ header {
   /* fill: #d1e0f3; */
   /*fill: #DCE9BE;*/
   /*fill: #b10b55;*/
-  fill: #ae2555;
+  /*fill: #ae2555;*/
+  fill: #FE2E64;
+  /*fill: #DF013A;*/
+  /*fill: #E8196C;*/
 }
 
 .bubble-hover {
   /* fill: #b8c7d9; */
   fill: #E8E9E7;
+  /*animation: gradual 2s;*/
 }
+
 
 .bubble-selected {
   /* fill: #a8c8ee;  */
