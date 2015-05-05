@@ -366,7 +366,7 @@ Bubbles = () ->
   mouseout = (d) ->
     node.classed("bubble-hover", false)
     # debugger;
-    d3.select("group-info").html(d.group).remove();
+    d3.select("#group-info").html("")
 
   # ---
   # public getter/setter for jitter variable
