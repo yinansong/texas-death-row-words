@@ -119,5 +119,24 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
       <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
     <![endif]-->
 
+    <script>
+      $(document).ready(function() {
+        setTimeout(showText, 3500);
+        function showText(){
+          $('h1').animate({opacity: 1}, 1000, function(){
+            $('h2').animate({opacity: 1}, 1000, function(){
+              $('p').animate({opacity:1}, 2000, function(){
+                $('#example').animate({opacity: 1}, 2000, function(){
+                  setTimeout(function(){
+                    ('#social').animate({opacity: 1}, 1000);
+                  }, 5000);
+                });
+              });
+            });
+          });
+        }
+      });
+    </script>
+
   </body>
 </html>
