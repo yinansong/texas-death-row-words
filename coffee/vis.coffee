@@ -349,7 +349,7 @@ Bubbles = () ->
     #   d3.select("#status").html("<h4>Click on a bubble to read an exerpt.</h4>")
     if id
       for x in data when idValue(x) is id
-        d3.select("#example").html("<span id=\"quote\">#{exampleValue(x)}&nbsp;</span><a href=\"\" id=\"read-more\">Read more...")
+        d3.select("#example").html("<span id=\"quote\">#{exampleValue(x)}&nbsp;</span>")
     else
       d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
 

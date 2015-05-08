@@ -178,3 +178,24 @@ footer p {
   position: absolute;
   top: 110px;
 }
+
+#share-this {
+  position: absolute;
+  margin-top: 40px;
+  right: 10px;
+}
+
+
+#fb-share-button {
+/*  display: inline-block;*/
+  position: fixed;
+  top: 10px;
+  right: 100px;
+}
+
+#tw-share-button {
+  /*display: inline-block;*/
+  position: fixed;
+  top: 10px;
+  right: 50px;
+}
