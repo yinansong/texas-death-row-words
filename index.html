@@ -1,18 +1,19 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+  <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+  <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+  <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>The Last Words From Texas Death Row</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Data Visualization for the last words from Texas Death Row">
+    <meta name="author" content="Yinan Song">
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
+    <!-- Favicons for all devices -->
     <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
@@ -35,9 +36,34 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/webticker.css"
     <!-- end CSS-->
 
     <script src="js/libs/modernizr-2.0.6.min.js"></script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.webticker.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        $("#webticker").webTicker();
+        // $("#webticker2").webTicker({duplicate:true, speed: 40, direction: 'right', rssurl:'http://yourwebsite.com/rss/', rssfrequency:1, startEmpty:false, hoverpause:false});
+
+        $("#stop").click(function(){
+          $("#webticker").webTicker('stop');
+        });
+
+        $("#continue").click(function(){
+          $("#webticker").webTicker('cont');
+        });
+
+        $("#update").click(function(){
+          $("#webticker").webTicker('update','<li id="item1">First News Item Updated</li><li id="item3">Third News Item Updated</li><li id="item4">Fourth News Item Updated</li><li id="item9">Ninth News Item Updated</li><li id="itemnew1">This is New Item 1</li><li  id="itemnew2">This is New Item 2</li><li  id="itemnew3">This is New Item 3</li><li  id="itemnew4">This is New Item 4</li>','swap');
+        });
+      });
+      </script>
+
+
   </head>
 
   <body>
@@ -91,6 +117,9 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
         <div id="vis"></div>
       </div>
       <div id="example"></div>
+      <ul id="webticker">
+        <li id='item1'>Click on a bubble to read more.</li>
+      </ul>
       <footer></footer>
     </div>
 
@@ -137,6 +166,5 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
         }
       });
     </script>
-
   </body>
 </html>

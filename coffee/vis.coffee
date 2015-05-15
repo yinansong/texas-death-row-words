@@ -35,7 +35,7 @@ Bubbles = () ->
 
   groupValue = (d) -> d.group
 
-  exampleValue= (d) -> d.example
+  quotesValue= (d) -> d.quotes
 
   # constants to control how
   # collision look and act
@@ -349,7 +349,7 @@ Bubbles = () ->
     #   d3.select("#status").html("<h4>Click on a bubble to read an exerpt.</h4>")
     if id
       for x in data when idValue(x) is id
-        d3.select("#example").html("<span id=\"quote\">#{exampleValue(x)}&nbsp;</span>")
+        d3.select("#example").html("<span id=\"quote\">#{quotesValue(x)}&nbsp;</span>")
     else
       d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
 
@@ -421,7 +421,7 @@ root.plotData = (selector, data, plot) ->
 
 texts = [
   # {key:"all",file:"all_prisoners_top100GroupExample.csv",name:"From All Executed Prisoners - New"}
-  {key:"all",file:"top100.json",name:"From All Executed Prisoners - New"}
+  {key:"all",file:"top100_v3.json",name:"From All Executed Prisoners - New"}
   {key:"old",file:"all_prisoners_old.csv",name:"From All Exected Prisoners - Old"}
 ]
 
