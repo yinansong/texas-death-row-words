@@ -420,7 +420,8 @@ root.plotData = (selector, data, plot) ->
     .call(plot)
 
 texts = [
-  {key:"all",file:"all_prisoners_top100GroupExample.csv",name:"From All Executed Prisoners - New"}
+  # {key:"all",file:"all_prisoners_top100GroupExample.csv",name:"From All Executed Prisoners - New"}
+  {key:"all",file:"top100.json",name:"From All Executed Prisoners - New"}
   {key:"old",file:"all_prisoners_old.csv",name:"From All Exected Prisoners - Old"}
 ]
 
@@ -467,5 +468,9 @@ $ ->
   # set the book title from the text name
   # d3.select("#book-title").html(text.name)
 
+  # # load our data
+  # d3.csv("data/#{text.file}", display)
+
   # load our data
-  d3.csv("data/#{text.file}", display)
+  d3.json("data/#{text.file}", display)
+
