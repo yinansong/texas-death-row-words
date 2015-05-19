@@ -35,7 +35,7 @@ Bubbles = () ->
 
   groupValue = (d) -> d.group
 
-  quotesValue= (d) -> d.quotes
+  quotesValue = (d) -> d.quotes
 
   # constants to control how
   # collision look and act
@@ -93,7 +93,7 @@ Bubbles = () ->
   # here we disable gravity and charge as we implement custom versions
   # of gravity and collisions for this visualization
   force = d3.layout.force()
-    .gravity(0.01)
+    .gravity(0.005)
     .charge(0)
     .size([width, height / 1.5])
     .on("tick", tick)
@@ -342,16 +342,43 @@ Bubbles = () ->
   # ---
   updateActive = (id) ->
     node.classed("bubble-selected", (d) -> id == idValue(d))
+    if id
+      for x in data when idValue(x) is id
+        d3.select("#stats-machine").html("#{quotesValue(x)}")
+    else
+      d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
+
+    # if id
+    #   for x in data when idValue(x) is id
+    #     d3.select("#example").html("#{quotesValue(x)}")
+    # else
+    #   d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
+
+
+
     # if no node is selected, id will be empty
     # if id.length > 0
     #   d3.select("#status").html("<h4><span class=\"active\">#{id}</span></h4>")
     # else
     #   d3.select("#status").html("<h4>Click on a bubble to read an exerpt.</h4>")
-    if id
-      for x in data when idValue(x) is id
-        d3.select("#example").html("<span id=\"quote\">#{quotesValue(x)}&nbsp;</span>")
-    else
-      d3.select("#example").html("<span>Click on a bubble to read a quote.</span>")
+
+
+
+
+    # lists = d3.select("body").selectAll("ul")
+    #           .data(data, (d, i) -> d.name)
+    # lists.enter().append("ul")
+    #      .attr("class", (d) -> d.name)
+    # lists.exit().remove();
+    # lines = lists.selectAll("li").data((d) ->
+    #   d.quotes
+    # , (d, i) ->
+    #   console.log d
+    #   d
+    # )
+    # lines.enter().append("li")
+    #      .text((d,i) -> d)
+    # lines.exit().remove();
 
   # ---
   # hover event
@@ -421,7 +448,7 @@ root.plotData = (selector, data, plot) ->
 
 texts = [
   # {key:"all",file:"all_prisoners_top100GroupExample.csv",name:"From All Executed Prisoners - New"}
-  {key:"all",file:"top100_v3.json",name:"From All Executed Prisoners - New"}
+  {key:"all",file:"top100_v5.json",name:"From All Executed Prisoners - New"}
   {key:"old",file:"all_prisoners_old.csv",name:"From All Exected Prisoners - Old"}
 ]
 

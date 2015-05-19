@@ -36,8 +36,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/webticker.css"
-    <!-- end CSS-->
+    <link rel="stylesheet" href="css/webticker.css">
 
     <script src="js/libs/modernizr-2.0.6.min.js"></script>
 
@@ -45,24 +44,23 @@
     <script type="text/javascript" src="js/libs/jquery.webticker.js"></script>
 
     <script type="text/javascript">
-      $(function(){
-        $("#webticker").webTicker();
-        // $("#webticker2").webTicker({duplicate:true, speed: 40, direction: 'right', rssurl:'http://yourwebsite.com/rss/', rssfrequency:1, startEmpty:false, hoverpause:false});
+      // $(function(){
+      //   $("#webticker").webTicker();
+      //   // $("#webticker2").webTicker({duplicate:true, speed: 40, direction: 'right', rssurl:'http://yourwebsite.com/rss/', rssfrequency:1, startEmpty:false, hoverpause:false});
 
-        $("#stop").click(function(){
-          $("#webticker").webTicker('stop');
-        });
+      //   $("#stop").click(function(){
+      //     $("#webticker").webTicker('stop');
+      //   });
 
-        $("#continue").click(function(){
-          $("#webticker").webTicker('cont');
-        });
+      //   $("#continue").click(function(){
+      //     $("#webticker").webTicker('cont');
+      //   });
 
-        $("#update").click(function(){
-          $("#webticker").webTicker('update','<li id="item1">First News Item Updated</li><li id="item3">Third News Item Updated</li><li id="item4">Fourth News Item Updated</li><li id="item9">Ninth News Item Updated</li><li id="itemnew1">This is New Item 1</li><li  id="itemnew2">This is New Item 2</li><li  id="itemnew3">This is New Item 3</li><li  id="itemnew4">This is New Item 4</li>','swap');
-        });
-      });
+      //   $("#update").click(function(){
+      //     $("#webticker").webTicker('update','<li id="item1">First News Item Updated</li><li id="item3">Third News Item Updated</li><li id="item4">Fourth News Item Updated</li><li id="item9">Ninth News Item Updated</li><li id="itemnew1">This is New Item 1</li><li  id="itemnew2">This is New Item 2</li><li  id="itemnew3">This is New Item 3</li><li  id="itemnew4">This is New Item 4</li>','swap');
+      //   });
+      // });
       </script>
-
 
   </head>
 
@@ -100,7 +98,7 @@
     <div id="container" class="container">
       <p id="desc">Texas Department of Criminal Justice keeps <a href="https://www.tdcj.state.tx.us/death_row/dr_executed_offenders.html">an open and detailed record of its executed prisoners</a>,
 including each of their last statements, since 1982. Here are the top 100 words
-that appear the most often from the statements of 524 excuted prisoners.</p>
+that appear the most often from the statements of 525 excuted prisoners.</p>
       <span id="group-info"></span>
       <header>
         <h1>The Last Words From Texas Death Row</h1>
@@ -112,14 +110,18 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
           </div>
         </div>
+        <p id="read-quotes">Click on a bubble to read quotes.</p>
+        <ul id="stats-machine">
+          <li></li>
+        </ul>
       </header>
       <div id="main" role="main">
         <div id="vis"></div>
       </div>
-      <div id="example"></div>
-      <ul id="webticker">
+      <!-- <div id="example"></div> -->
+<!--       <ul id="webticker">
         <li id='item1'>Click on a bubble to read more.</li>
-      </ul>
+      </ul> -->
       <footer></footer>
     </div>
 
@@ -147,6 +149,21 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
       <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
     <![endif]-->
+    <script>
+      var j = 0;
+      var delay = 3000; //millisecond delay between cycles
+      function cycleThru(){
+        var jmax = $("ul#stats-machine li").length -1;
+        $("ul#stats-machine li:eq(" + j + ")")
+               .animate({"opacity" : "1"} , 500)
+               .animate({"opacity" : "1"}, delay)
+               .animate({"opacity" : "0"}, 1000, function(){
+                       (j == jmax) ? j=0 : j++;
+                       cycleThru();
+               });
+      };
+      cycleThru();
+    </script>
 
     <script>
       $(document).ready(function() {
@@ -155,7 +172,7 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
           $('h1').animate({opacity: 1}, 1000, function(){
             $('h2').animate({opacity: 1}, 1000, function(){
               $('p').animate({opacity:1}, 2000, function(){
-                $('#example').animate({opacity: 1}, 2000, function(){
+                $('#read-quotes').animate({opacity: 1}, 2000, function(){
                   setTimeout( function(){
                     $('#social').animate({opacity: 0.9}, 500)
                   }, 3000);
@@ -166,5 +183,15 @@ that appear the most often from the statements of 524 excuted prisoners.</p>
         }
       });
     </script>
+
+    <script>
+      $(document).ready(function(){
+        $('#vis').click(function(){
+          console.log("it's clicked");
+          $("#read-quotes").hide();
+        });
+      });
+    </script>
+
   </body>
 </html>
