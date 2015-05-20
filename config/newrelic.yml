@@ -4,7 +4,7 @@
 # overhead.  For more information, visit www.newrelic.com.
 #
 # Generated May 19, 2015
-# 
+#
 # This configuration file is custom generated for app36465218@heroku.com
 #
 # For full documentation of agent configuration options, please refer to
@@ -22,7 +22,7 @@ common: &default_settings
   # agent_enabled: false
 
   # Logging level for log/newrelic_agent.log
-  log_level: info
+  log_level: debug
 
 
 # Environment-specific settings are in this section.
